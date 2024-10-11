@@ -68,14 +68,81 @@ public class FinancialTracker {
         // The amount should be a positive number.
         // After validating the input, a new `Transaction` object should be created with the entered values.
         // The new deposit should be added to the `transactions` ArrayList.
+
+            System.out.println("Please enter following details:");
+
+            String dateOfDeposit;
+            while (true) {
+                System.out.print("Please enter the date as yyyy-MM-dd : ");
+                dateOfDeposit = scanner.nextLine();
+                try {
+                    LocalDate.parse(dateOfDeposit, DATE_FORMATTER);
+                    break; //exit loop if input is valid
+                } catch (Exception e) {
+                    System.out.println("Invalid date format. Please try again.");
+                }
+            }
+
+
+            String timeOfDeposit;
+
+                System.out.print("Enter the time as HH:mm:ss: ");
+                timeOfDeposit = scanner.nextLine();
+
+
+
+
+            System.out.print("Enter a description: ");
+            String description = scanner.nextLine();
+
+
+            System.out.print("Enter the vendor: ");
+            String vendor = scanner.nextLine();
+
+
+            double amount = 0;
+            while (true) {
+                System.out.print("Enter the amount: ");
+                try {
+                    amount = Double.parseDouble(scanner.nextLine());
+                    if (amount > 0) {
+                        break; // exit loop if valid
+                    } else {
+                        System.out.println("Amount must be positive.");
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("Invalid input. Please enter a value bigger than zero.");
+                }
+            }
+
+
     }
 
     private static void addPayment(Scanner scanner) {
         // This method should prompt the user to enter the date, time, description, vendor, and amount of a payment.
         // The user should enter the date and time in the following format: yyyy-MM-dd HH:mm:ss
-        // The amount received should be a positive number then transformed to a negative number.
+        // The amount received should be a positive number than transformed to a negative number.
         // After validating the input, a new `Transaction` object should be created with the entered values.
         // The new payment should be added to the `transactions` ArrayList.
+        System.out.println("Please enter following details:");
+
+        String dateOfPayment;
+        while(true){
+            System.out.println("Please enter the date as yyyy-MM-dd.");
+            dateOfPayment = scanner.nextLine();
+            try {
+                LocalDate.parse(dateOfPayment, DATE_FORMATTER);
+                break;
+            } catch (Exception e){
+                System.out.println("Invalid date format. Please try again.");
+            }
+
+
+
+
+        }
+
+
     }
 
     private static void ledgerMenu(Scanner scanner) {
