@@ -3,6 +3,7 @@ package com.pluralsight;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -67,6 +68,14 @@ public class FinancialTracker {
         try{
             BufferedReader br = new BufferedReader(new FileReader ("transactions.csv"));
             while ((line = br.readLine()) != null) {
+                String[] parts = line.split("\\|");
+                double amount = Double.parseDouble(parts[4]);
+                String vendor = parts[3];
+                String description = parts[2];
+                LocalDate date = LocalDate.parse(parts[0]);
+                LocalTime time = LocalTime.parse(parts[1]);
+                transactions.add(new Transaction(date, time, description, vendor, amount ));
+
 
                 }
         }catch (Exception e) {
