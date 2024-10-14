@@ -354,7 +354,45 @@ public class FinancialTracker {
         // The method loops through the transactions list and checks each transaction's date against the date range.
         // Transactions that fall within the date range are printed to the console.
         // If no transactions fall within the date range, the method prints a message indicating that there are no results.
-    }
+
+
+        // Check if the transactions list is empty
+        if(transactions.isEmpty()) {
+            System.out.println("Unfortunately, there is no transaction for this account.");
+            return;
+        }
+            else
+            System.out.println("This is the list of transactions from" + startDate + " to " +endDate);
+            System.out.println("Date | Time | Description | Vendor | Amount");
+
+            // Loop through transactions and check the date
+        for (Transaction transaction : transactions) {
+                LocalDate transactionDate = transaction.getDate();
+                // Check if the transaction date is within the specified range
+                if((transactionDate.isEqual(startDate) || transactionDate.isAfter(startDate)) && (transactionDate.isEqual(endDate) || transactionDate.isBefore(endDate))) {
+
+                String date = transaction.getDate().format(DATE_FORMATTER);
+                String time = transaction.getTime().format(TIME_FORMATTER);
+                String description = transaction.getDescription();
+                String vendor = transaction.getVendor();
+                String amount = String.format("%.2f", transaction.getAmount());
+
+                System.out.printf("%s|%s|%s|%s|%s|\n" , date , time , description , vendor , amount);
+
+                    if (!transactionDate.isEqual(startDate)) || !transactionDate.isAfter(startDate)) && (!transactionDate.isEqual(endDate) || !transactionDate.isBefore(endDate)))
+
+                    }
+
+}
+        }
+
+            // If no transactions were found, notify the user
+
+            }
+
+
+
+
 
     private static void filterTransactionsByVendor(String vendor) {
         // This method filters the transactions by vendor and prints a report to the console.
