@@ -256,10 +256,10 @@ public class FinancialTracker {
         System.out.println("Date, Time, Description, Vendor, Amount");
 
         for (Transaction transaction : transactions) {
-            String date = transaction.getDate().format(DATE_FORMATTER);
-            String time = transaction.getTime().format(TIME_FORMATTER);
-            String description = transaction.getDescription();
-            String vendor = transaction.getVendor();
+            String date = transaction.getDate().format(DATE_FORMATTER).trim();
+            String time = transaction.getTime().format(TIME_FORMATTER).trim();
+            String description = transaction.getDescription().trim();
+            String vendor = transaction.getVendor().trim();
             String amount = String.format("%.2f" , transaction.getAmount());
 
             System.out.printf("%s|%s|%s|%s|%s|\n", date, time, description, vendor, amount);
@@ -271,12 +271,26 @@ public class FinancialTracker {
     private static void displayDeposits() {
         // This method should display a table of all deposits in the `transactions` ArrayList.
         // The table should have columns for date, time, description, vendor, and amount.
-        
+        System.out.println("You can check for all deposits");
+        System.out.println("Date | Time | Description | Vendor | Amount");
+
+        for (Transaction transaction : transactions) {
+            String date = transaction.getDate().format(DATE_FORMATTER).trim();
+            String time = transaction.getTime().format(TIME_FORMATTER).trim();
+            String description = transaction.getDescription().trim();
+            String vendor = transaction.getVendor().trim();
+            String amount = String.format("%.2f", transaction.getAmount());
+
+            System.out.printf("%s|%s|%s|%s|%s|\n" , date, time, description, vendor, amount);
+        }
+
+
     }
 
     private static void displayPayments() {
         // This method should display a table of all payments in the `transactions` ArrayList.
         // The table should have columns for date, time, description, vendor, and amount.
+        
     }
 
     private static void reportsMenu(Scanner scanner) {
