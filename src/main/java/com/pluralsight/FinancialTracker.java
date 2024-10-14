@@ -175,12 +175,45 @@ public class FinancialTracker {
             }
 
 
+            System.out.print("Enter the time as HH:mm:ss: ");
+            dateOfPayment = scanner.nextLine();
+
+
+
+
+            System.out.print("Enter a description: ");
+            String description = scanner.nextLine();
+
+
+            System.out.print("Enter the vendor: ");
+            String vendor = scanner.nextLine();
+
+
+            double amount = 0;
+            while (true) {
+                System.out.print("Enter the amount: ");
+                try {
+                    amount = Double.parseDouble(scanner.nextLine());
+                    if (amount > 0) {
+                        break; // exit loop if valid
+                    } else {
+                        System.out.println("Amount must be positive.");
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("Invalid input. Please enter a value bigger than zero.");
+                }
+            }
 
 
         }
 
 
-    }
+
+
+        }
+
+
+    
 
     private static void ledgerMenu(Scanner scanner) {
         boolean running = true;
