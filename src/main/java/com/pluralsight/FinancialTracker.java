@@ -1,6 +1,7 @@
 package com.pluralsight;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -63,12 +64,25 @@ public class FinancialTracker {
         // For example: 2023-04-15|10:13:25|ergonomic keyboard|Amazon|-89.50
         // After reading all the transactions, the file should be closed.
         // If any errors occur, an appropriate error message should be displayed.
+        File file = new File(fileName);
+        if (!file.exists()) {
+            try{
+                if (file.createNewFile()) {
+                System.out.println("File created" + file.getName());
+            }
 
+            } catch (Exception e) {
+                System.out.println("You need to add a file");
+            }return;
+        }
         String line;
         try{
+
+
             BufferedReader br = new BufferedReader(new FileReader ("transactions.csv"));
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split("\\|");
+
                 double amount = Double.parseDouble(parts[4]);
                 String vendor = parts[3];
                 String description = parts[2];
@@ -77,13 +91,12 @@ public class FinancialTracker {
                 transactions.add(new Transaction(date, time, description, vendor, amount ));
 
 
+
                 }
         }catch (Exception e) {
-
+            System.out.println("Please be careful there is a mashed potato");
         }
-
-
-
+//// After reading all the transactions, the file should be closed. how can i do that
     }
 
     private static void addDeposit(Scanner scanner) {
