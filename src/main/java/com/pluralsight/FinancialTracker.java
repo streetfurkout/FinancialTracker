@@ -391,7 +391,7 @@ public class FinancialTracker {
                 found = true;
 
 
-                System.out.printf("%s|%s|\n", date, time);
+                System.out.printf("%s|%s|%s|%s|%s|\n", date, time, description, vendor, amount);
 
             }
         }
@@ -414,11 +414,24 @@ public class FinancialTracker {
                 return;
 
             } else {
-                System.out.println("This is the transaction list sort by vendor");
+                System.out.println("This is the transaction filtered by vendor " + vendor);
+            }
+
+            boolean fixed = false;
+
                 for (Transaction transaction : transactions) {
+
                     if (transaction.getVendor().equalsIgnoreCase(vendor)) {
-                        System.out.println("%s | ", vendor);
+
+                        String date = transaction.getDate().format(DATE_FORMATTER);
+                        String time = transaction.getTime().format(TIME_FORMATTER);
+                        String description =transaction.getDescription();
+                        String vendor = transaction.getVendor();
+                        String amount = transaction.getVendor();
+
+                        fixed = true;
                     }
+                    System.out.println("%s|%s|%s|%s|%s\n" , date, time, description, vendor, amount);
 
                 }
 
