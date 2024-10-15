@@ -1,5 +1,6 @@
 package com.pluralsight;
 
+import javax.swing.border.EtchedBorder;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -95,7 +96,6 @@ public class FinancialTracker {
                 transactions.add(transaction);
 
 
-
             }
         } catch (Exception e) {
             System.out.println("Please be careful there is a mashed potato");
@@ -126,39 +126,39 @@ public class FinancialTracker {
 
         String timeOfDeposit;
         while (true) {
-        System.out.print("Enter the time as HH:mm:ss: ");
-        timeOfDeposit = scanner.nextLine();
-        try {
-            LocalTime.parse(timeOfDeposit, TIME_FORMATTER);
+            System.out.print("Enter the time as HH:mm:ss: ");
+            timeOfDeposit = scanner.nextLine();
+            try {
+                LocalTime.parse(timeOfDeposit, TIME_FORMATTER);
                 break;
-        } catch (Exception e) {
-            System.out.println("Invalid time format. Please try again");
+            } catch (Exception e) {
+                System.out.println("Invalid time format. Please try again");
 
-        }
-    }
-
-            System.out.print("Enter a description: ");
-            String description = scanner.nextLine();
-
-
-            System.out.print("Enter the vendor: ");
-            String vendor = scanner.nextLine();
-
-
-            double amount = 0;
-            while (true) {
-                System.out.print("Enter the amount: ");
-                try {
-                    amount = Double.parseDouble(scanner.nextLine());
-                    if (amount > 0) {
-                        break; // exit loop if valid
-                    } else {
-                        System.out.println("Amount must be positive.");
-                    }
-                } catch (NumberFormatException e) {
-                    System.out.println("Invalid input. Please enter a value bigger than zero.");
-                }
             }
+        }
+
+        System.out.print("Enter a description: ");
+        String description = scanner.nextLine();
+
+
+        System.out.print("Enter the vendor: ");
+        String vendor = scanner.nextLine();
+
+
+        double amount = 0;
+        while (true) {
+            System.out.print("Enter the amount: ");
+            try {
+                amount = Double.parseDouble(scanner.nextLine());
+                if (amount > 0) {
+                    break; // exit loop if valid
+                } else {
+                    System.out.println("Amount must be positive.");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input. Please enter a value bigger than zero.");
+            }
+        }
 
 
     }
@@ -172,25 +172,25 @@ public class FinancialTracker {
         System.out.println("Please enter following details:");
 
         String dateOfPayment;
-        while(true){
+        while (true) {
             System.out.println("Please enter the date as yyyy-MM-dd.");
             dateOfPayment = scanner.nextLine();
             try {
                 LocalDate.parse(dateOfPayment, DATE_FORMATTER);
                 break;
-            } catch (Exception e){
+            } catch (Exception e) {
                 System.out.println("Invalid date format. Please try again.");
             }
 
-        String timeOfPayment;
-        while (true) {
-            System.out.print("Enter the time as HH:mm:ss: ");
-            timeOfPayment = scanner.nextLine();
-            try {
-                LocalTime.parse(timeOfPayment, TIME_FORMATTER);
-                break;
-            } catch (Exception e) {
-                System.out.println("Invalid time format. Please try again");
+            String timeOfPayment;
+            while (true) {
+                System.out.print("Enter the time as HH:mm:ss: ");
+                timeOfPayment = scanner.nextLine();
+                try {
+                    LocalTime.parse(timeOfPayment, TIME_FORMATTER);
+                    break;
+                } catch (Exception e) {
+                    System.out.println("Invalid time format. Please try again");
 
                 }
             }
@@ -198,8 +198,6 @@ public class FinancialTracker {
 
             System.out.print("Enter the time as HH:mm:ss: ");
             dateOfPayment = scanner.nextLine();
-
-
 
 
             System.out.print("Enter a description: ");
@@ -226,7 +224,7 @@ public class FinancialTracker {
             }
 
         }
-        }
+    }
 
     private static void ledgerMenu(Scanner scanner) {
         boolean running = true;
@@ -273,7 +271,7 @@ public class FinancialTracker {
             String time = transaction.getTime().format(TIME_FORMATTER).trim();
             String description = transaction.getDescription().trim();
             String vendor = transaction.getVendor().trim();
-            String amount = String.format("%.2f" , transaction.getAmount());
+            String amount = String.format("%.2f", transaction.getAmount());
 
             System.out.printf("%s|%s|%s|%s|%s|\\|n", date, time, description, vendor, amount);
 
@@ -294,7 +292,7 @@ public class FinancialTracker {
             String vendor = transaction.getVendor().trim();
             String amount = String.format("%.2f", transaction.getAmount());
 
-            System.out.printf("%s|%s|%s|%s|%s|\n" , date, time, description, vendor, amount);
+            System.out.printf("%s|%s|%s|%s|%s|\n", date, time, description, vendor, amount);
         }
 
 
@@ -315,7 +313,7 @@ public class FinancialTracker {
             String vendor = transaction.getVendor();
             String amount = String.format("%.2f", transaction.getAmount());
 
-            System.out.printf("%s|%s|%s|%s|%s|\n" , date , time , description , vendor , amount);
+            System.out.printf("%s|%s|%s|%s|%s|\n", date, time, description, vendor, amount);
 
         }
     }
@@ -370,53 +368,60 @@ public class FinancialTracker {
 
 
         // Check if the transactions list is empty
-        if(transactions.isEmpty()) {
+        if (transactions.isEmpty()) {
             System.out.println("Unfortunately, there is no transaction for this account.");
             return;
+        } else {
+            System.out.println("This is the list of transactions from" + startDate + " to " + endDate);
         }
-            else
-            System.out.println("This is the list of transactions from" + startDate + " to " +endDate);
 
-            // Loop through transactions and check the date
-                for (Transaction transaction : transactions) {
-                LocalDate transactionDate = transaction.getDate();
-                // Check if the transaction date is within the specified range
-                if((transactionDate.isEqual(startDate) || transactionDate.isAfter(startDate)) && (transactionDate.isEqual(endDate) || transactionDate.isBefore(endDate))) {
+        boolean found = false;
+
+        // Loop through transactions and check the date
+        for (Transaction transaction : transactions) {
+            LocalDate transactionDate = transaction.getDate();
+            // Check if the transaction date is within the specified range
+            if ((transactionDate.isEqual(startDate) || transactionDate.isAfter(startDate)) && (transactionDate.isEqual(endDate) || transactionDate.isBefore(endDate))) {
 
                 String date = transaction.getDate().format(DATE_FORMATTER);
                 String time = transaction.getTime().format(TIME_FORMATTER);
+                String description =transaction.getDescription();
+                String vendor = transaction.getVendor();
+                String amount = t
+                found = true;
 
 
-                System.out.printf("%s|%s|\n" , date , time);
+                System.out.printf("%s|%s|\n", date, time);
 
-                    if (!transactionDate.isEqual(startDate)) || (!transactionDate.isAfter(startDate)) && (!transactionDate.isEqual(endDate) || (!transactionDate.isBefore(endDate)))
-
-                    }
-
-}
+            }
+        }
+        if(!found){
+            System.out.println("No transactions found!");
         }
 
+    }
 
-    private static void filterTransactionsByVendor(String vendor) {
-        // This method filters the transactions by vendor and prints a report to the console.
-        // It takes one parameter: vendor, which represents the name of the vendor to filter by.
-        // The method loops through the transactions list and checks each transaction's vendor name against the specified vendor name.
-        // Transactions with a matching vendor name are printed to the console.
-        // If no transactions match the specified vendor name, the method prints a message indicating that there are no results.
 
-        if(transactions.isEmpty()) {
-            System.out.println("Unfortunately, there is no transaction for this account.");
-            return;
+        private static void filterTransactionsByVendor (String vendor){
+            // This method filters the transactions by vendor and prints a report to the console.
+            // It takes one parameter: vendor, which represents the name of the vendor to filter by.
+            // The method loops through the transactions list and checks each transaction's vendor name against the specified vendor name.
+            // Transactions with a matching vendor name are printed to the console.
+            // If no transactions match the specified vendor name, the method prints a message indicating that there are no results.
 
-        else
-            System.out.println("This is the transaction list sort by vendor");
-            for (Transaction transaction : transactions) {
-                if(transaction.getVendor().equalsIgnoreCase(vendor)){
-                    System.out.println("%s | " , vendor);
+            if (transactions.isEmpty()) {
+                System.out.println("Unfortunately, there is no transaction for this account.");
+                return;
+
+            } else {
+                System.out.println("This is the transaction list sort by vendor");
+                for (Transaction transaction : transactions) {
+                    if (transaction.getVendor().equalsIgnoreCase(vendor)) {
+                        System.out.println("%s | ", vendor);
+                    }
+
                 }
 
             }
-
         }
     }
-}
