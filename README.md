@@ -1,21 +1,18 @@
 # Project Title
+FinancialTracker
 
 ## Description of the Project
 
-Briefly describe what this Java console application does. Mention its purpose and who the intended users are. Explain the main functionality and what problems it aims to solve.
-
+I created this application to can help people about their transactions. If they would use this app, they can follow their payments and deposits easily. They can display their monthly, yearly or date based transactions too.
 ![Class Diagram](path/to/your/class_diagram.png)
 
 ## User Stories
 
-List the user stories that guided the development of your application. Format these stories as: "As a [type of user], I want [some goal] so that [some reason]."
 
-- As a user, I want to be able to input my data, so that the application can process it accordingly.
-- As a user, I want to receive immediate feedback, so I can understand what to do next.
+- As a user, I want to be able to follow my all transactions (should include monthly, yearly or whenever I want) so that the application can process it easily.
 
 ## Setup
-
-Instructions on how to set up and run the project using IntelliJ IDEA.
+No additional set up needed.
 
 ### Prerequisites
 
@@ -34,8 +31,7 @@ Follow these steps to get your application running within IntelliJ IDEA:
 
 ## Technologies Used
 
-- Java: Mention the version you are using.
-- Any additional libraries or frameworks used in the project.
+- Language: Java, Build system: Maven, JDK: corretto-17 Amazon Coretto version 17.0.12
 
 ## Demo
 
@@ -45,26 +41,21 @@ Include screenshots or GIFs that show your application in action. Use tools like
 
 ## Future Work
 
-Outline potential future enhancements or functionalities you might consider adding:
-
-- Additional feature to be developed.
-- Improvement of current functionalities.
 
 ## Resources
 
 List resources such as tutorials, articles, or documentation that helped you during the project.
 
-- [Java Programming Tutorial](https://www.example.com)
-- [Effective Java](https://www.example.com)
+- [Java Programming Tutorial](https://www.w3schools.com/java/default.asp)
+- [BrightSpaceWorkBooks] (https://yearup.brightspace.com/d2l/home/8605)
 
 ## Team Members
 
-- **Name 1** - Specific contributions or roles.
-- **Name 2** - Specific contributions or roles.
+- **Furkan KENDIRCIOGLU** - Creator of the project.
 
 ## Thanks
 
 Express gratitude towards those who provided help, guidance, or resources:
 
-- Thank you to [Mentor's Name] for continuous support and guidance.
-- A special thanks to all teammates for their dedication and teamwork.
+- Thank you to [Raymond Maroun] for continuous support and guidance.
+- A special thanks to Emre AKARSU and Ekaterina Koshkina for their dedication and teamwork.

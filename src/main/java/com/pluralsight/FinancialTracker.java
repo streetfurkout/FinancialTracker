@@ -182,6 +182,19 @@ public class FinancialTracker {
                 System.out.println("Invalid date format. Please try again.");
             }
 
+        String timeOfPayment;
+        while (true) {
+            System.out.print("Enter the time as HH:mm:ss: ");
+            timeOfPayment = scanner.nextLine();
+            try {
+                LocalTime.parse(timeOfPayment, TIME_FORMATTER);
+                break;
+            } catch (Exception e) {
+                System.out.println("Invalid time format. Please try again");
+
+                }
+            }
+
 
             System.out.print("Enter the time as HH:mm:ss: ");
             dateOfPayment = scanner.nextLine();
@@ -376,7 +389,7 @@ public class FinancialTracker {
 
                 System.out.printf("%s|%s|\n" , date , time);
 
-                    if (!transactionDate.isEqual(startDate)) || !transactionDate.isAfter(startDate)) && (!transactionDate.isEqual(endDate) || !transactionDate.isBefore(endDate)))
+                    if (!transactionDate.isEqual(startDate)) || (!transactionDate.isAfter(startDate)) && (!transactionDate.isEqual(endDate) || (!transactionDate.isBefore(endDate)))
 
                     }
 
