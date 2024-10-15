@@ -82,23 +82,24 @@ public class FinancialTracker {
 
             BufferedReader br = new BufferedReader(new FileReader("transactions.csv"));
             while ((line = br.readLine()) != null) {
-                String[] parts = line.split("|");
+                String[] parts = line.split("\\|");
 
                 double amount = Double.parseDouble(parts[4]);
 
 
                 String vendor = parts[3];
                 String description = parts[2];
-                LocalDate date = LocalDate.parse(parts[0]);
-                LocalTime time = LocalTime.parse(parts[1]);
-                transactions.add(new Transaction(date, time, description, vendor, amount));
+                LocalDate date = LocalDate.parse(parts[0], DATE_FORMATTER);
+                LocalTime time = LocalTime.parse(parts[1], TIME_FORMATTER);
+                Transaction transaction = new Transaction(date, time, description, vendor, amount);
+                transactions.add(transaction);
+
 
 
             }
         } catch (Exception e) {
             System.out.println("Please be careful there is a mashed potato");
         }
-//// After reading all the transactions, the file should be closed. how can I do that
     }
 
     private static void addDeposit(Scanner scanner) {
@@ -211,16 +212,8 @@ public class FinancialTracker {
                 }
             }
 
-
         }
-
-
-
-
         }
-
-
-
 
     private static void ledgerMenu(Scanner scanner) {
         boolean running = true;
@@ -370,7 +363,6 @@ public class FinancialTracker {
         }
             else
             System.out.println("This is the list of transactions from" + startDate + " to " +endDate);
-            System.out.println("Date | Time | Description | Vendor | Amount");
 
             // Loop through transactions and check the date
                 for (Transaction transaction : transactions) {
@@ -380,11 +372,9 @@ public class FinancialTracker {
 
                 String date = transaction.getDate().format(DATE_FORMATTER);
                 String time = transaction.getTime().format(TIME_FORMATTER);
-                String description = transaction.getDescription();
-                String vendor = transaction.getVendor();
-                String amount = String.format("%.2f", transaction.getAmount());
 
-                System.out.printf("%s|%s|%s|%s|%s|\n" , date , time , description , vendor , amount);
+
+                System.out.printf("%s|%s|\n" , date , time);
 
                     if (!transactionDate.isEqual(startDate)) || !transactionDate.isAfter(startDate)) && (!transactionDate.isEqual(endDate) || !transactionDate.isBefore(endDate)))
 
@@ -401,12 +391,19 @@ public class FinancialTracker {
         // Transactions with a matching vendor name are printed to the console.
         // If no transactions match the specified vendor name, the method prints a message indicating that there are no results.
 
-        if(transactions.isEmpty()){
-            System.out.println("Unfortunately there is no transaction for this account");
-            return;}
+        if(transactions.isEmpty()) {
+            System.out.println("Unfortunately, there is no transaction for this account.");
+            return;
 
         else
-            System.out.println();
+            System.out.println("This is the transaction list sort by vendor");
+            for (Transaction transaction : transactions) {
+                if(transaction.getVendor().equalsIgnoreCase(vendor)){
+                    System.out.println("%s | " , vendor);
+                }
+
+            }
 
         }
     }
+}
