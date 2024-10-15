@@ -387,7 +387,7 @@ public class FinancialTracker {
                 String time = transaction.getTime().format(TIME_FORMATTER);
                 String description =transaction.getDescription();
                 String vendor = transaction.getVendor();
-                String amount = t
+                String amount = transaction.getVendor();
                 found = true;
 
 
