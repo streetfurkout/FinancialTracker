@@ -66,37 +66,39 @@ public class FinancialTracker {
         // If any errors occur, an appropriate error message should be displayed.
         File file = new File(fileName);
         if (!file.exists()) {
-            try{
+            try {
                 if (file.createNewFile()) {
-                System.out.println("File created" + file.getName());
-            }
+                    System.out.println("File created" + file.getName());
+                }
 
             } catch (Exception e) {
                 System.out.println("You need to add a file");
-            }return;
+            }
+            return;
         }
         String line;
-        try{
+        try {
 
 
-            BufferedReader br = new BufferedReader(new FileReader ("transactions.csv"));
+            BufferedReader br = new BufferedReader(new FileReader("transactions.csv"));
             while ((line = br.readLine()) != null) {
-                String[] parts = line.split("\\|");
+                String[] parts = line.split("|");
 
                 double amount = Double.parseDouble(parts[4]);
+
+
                 String vendor = parts[3];
                 String description = parts[2];
                 LocalDate date = LocalDate.parse(parts[0]);
                 LocalTime time = LocalTime.parse(parts[1]);
-                transactions.add(new Transaction(date, time, description, vendor, amount ));
+                transactions.add(new Transaction(date, time, description, vendor, amount));
 
 
-
-                }
-        }catch (Exception e) {
+            }
+        } catch (Exception e) {
             System.out.println("Please be careful there is a mashed potato");
         }
-//// After reading all the transactions, the file should be closed. how can i do that
+//// After reading all the transactions, the file should be closed. how can I do that
     }
 
     private static void addDeposit(Scanner scanner) {
@@ -106,28 +108,33 @@ public class FinancialTracker {
         // After validating the input, a new `Transaction` object should be created with the entered values.
         // The new deposit should be added to the `transactions` ArrayList.
 
-            System.out.println("Please enter following details:");
+        System.out.println("Please enter following details:");
 
-            String dateOfDeposit;
-            while (true) {
-                System.out.print("Please enter the date as yyyy-MM-dd : ");
-                dateOfDeposit = scanner.nextLine();
-                try {
-                    LocalDate.parse(dateOfDeposit, DATE_FORMATTER);
-                    break; //exit loop if input is valid
-                } catch (Exception e) {
-                    System.out.println("Invalid date format. Please try again.");
-                }
+        String dateOfDeposit;
+        while (true) {
+            System.out.print("Please enter the date as yyyy-MM-dd : ");
+            dateOfDeposit = scanner.nextLine();
+            try {
+                LocalDate.parse(dateOfDeposit, DATE_FORMATTER);
+                break; //exit loop if input is valid
+            } catch (Exception e) {
+                System.out.println("Invalid date format. Please try again.");
             }
+        }
 
 
-            String timeOfDeposit;
+        String timeOfDeposit;
+        while (true) {
+        System.out.print("Enter the time as HH:mm:ss: ");
+        timeOfDeposit = scanner.nextLine();
+        try {
+            LocalTime.parse(timeOfDeposit, TIME_FORMATTER);
+                break;
+        } catch (Exception e) {
+            System.out.println("Invalid time format. Please try again");
 
-                System.out.print("Enter the time as HH:mm:ss: ");
-                timeOfDeposit = scanner.nextLine();
-
-
-
+        }
+    }
 
             System.out.print("Enter a description: ");
             String description = scanner.nextLine();
@@ -262,7 +269,7 @@ public class FinancialTracker {
             String vendor = transaction.getVendor().trim();
             String amount = String.format("%.2f" , transaction.getAmount());
 
-            System.out.printf("%s|%s|%s|%s|%s|\n", date, time, description, vendor, amount);
+            System.out.printf("%s|%s|%s|%s|%s|\\|n", date, time, description, vendor, amount);
 
 
         }
