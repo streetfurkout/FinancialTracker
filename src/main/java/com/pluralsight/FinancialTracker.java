@@ -358,19 +358,24 @@ public class FinancialTracker {
                 case "1":
                     // Generate a report for all transactions within the current month,
                     // including the date, time, description, vendor, and amount for each transaction.
+                    monthToDateReport();
                 case "2":
                     // Generate a report for all transactions within the previous month,
                     // including the date, time, description, vendor, and amount for each transaction.
+                    previousMonthReport();
                 case "3":
                     // Generate a report for all transactions within the current year,
                     // including the date, time, description, vendor, and amount for each transaction.
+                    yearToDateReport();
 
                 case "4":
                     // Generate a report for all transactions within the previous year,
                     // including the date, time, description, vendor, and amount for each transaction.
+                    previousYearReport();
                 case "5":
                     // Prompt the user to enter a vendor name, then generate a report for all transactions
                     // with that vendor, including the date, time, description, vendor, and amount for each transaction.
+
                 case "0":
                     running = false;
                 default:
@@ -458,10 +463,36 @@ public class FinancialTracker {
                 }
             }
         }
-        private static void MonthToDateReport() {
+        private static void monthToDateReport() {
         LocalDate today = LocalDate.now();
         LocalDate startingDayOfTheMonth = today.withDayOfMonth(1);
+
         filterTransactionsByDate(startingDayOfTheMonth, today);
         }
+
+        private static void previousMonthReport() {
+        LocalDate today = LocalDate.now();
+        LocalDate startingDayOfTheCurrentMonth = today.withDayOfMonth(1);
+        LocalDate theLastDayOfThePreviousMonth = startingDayOfTheCurrentMonth.minusDays(1);
+        LocalDate theFirstDayOfPreviousMonth = theLastDayOfThePreviousMonth.withDayOfMonth(1);
+
+        filterTransactionsByDate(startingDayOfTheCurrentMonth, theLastDayOfThePreviousMonth);
+        }
+        private static void yearToDateReport(){
+        LocalDate today = LocalDate.now();
+        LocalDate startingDateOfTheYear = today.withDayOfYear(1);
+
+        filterTransactionsByDate(startingDateOfTheYear, today);
+        }
+
+        private static void previousYearReport() {
+        LocalDate today = LocalDate.now();
+        LocalDate startingDayOfTheCureentYear = today.withDayOfYear(1);
+        LocalDate theLastDayOfThePreviousYear = startingDayOfTheCureentYear.minusDays(1);
+        LocalDate theFirstDayOfThePreviousYear = theLastDayOfThePreviousYear.withDayOfYear(1);
+
+        filterTransactionsByDate(theFirstDayOfThePreviousYear, theLastDayOfThePreviousYear);
+    }
+
 }
 
