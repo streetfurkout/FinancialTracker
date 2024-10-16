@@ -439,8 +439,12 @@ public class FinancialTracker {
                     String amount = String.format("%.2f", transaction.getAmount());
 
 
-                    System.out.println("%s|%s|%s|%s|%s\n", date, time, description, vendor, amount);
+                    System.out.printf("%s | %s | %s | %s | %s\n", date, time, description, vendor, amount);
                     fixed = true;
+
+                    if (!fixed){
+                        System.err.println("No transactions found for vendor: " +vendor);
+                    }
 
 
                 }
