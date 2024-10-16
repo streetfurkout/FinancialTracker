@@ -399,7 +399,7 @@ public class FinancialTracker {
                 String time = transaction.getTime().format(TIME_FORMATTER);
                 String description =transaction.getDescription();
                 String vendor = transaction.getVendor();
-                String amount = transaction.getVendor();
+                String amount = String.format("%.2f",transaction.getAmount());
                 found = true;
 
 
@@ -414,7 +414,7 @@ public class FinancialTracker {
     }
 
 
-        private static void filterTransactionsByVendor (String vendor){
+        private static void filterTransactionsByVendor (String vendor) {
             // This method filters the transactions by vendor and prints a report to the console.
             // It takes one parameter: vendor, which represents the name of the vendor to filter by.
             // The method loops through the transactions list and checks each transaction's vendor name against the specified vendor name.
@@ -424,29 +424,28 @@ public class FinancialTracker {
             if (transactions.isEmpty()) {
                 System.out.println("Unfortunately, there is no transaction for this account.");
                 return;
-
-            } else {
-                System.out.println("This is the transaction filtered by vendor " + vendor);
             }
+            System.out.println("Transaction filtered by vendor: " + vendor);
 
             boolean fixed = false;
 
-                for (Transaction transaction : transactions) {
+            for (Transaction transaction : transactions) {
 
-                    if (transaction.getVendor().equalsIgnoreCase(vendor)) {
+                if (transaction.getVendor().equalsIgnoreCase(vendor)) {
 
-                        String date = transaction.getDate().format(DATE_FORMATTER);
-                        String time = transaction.getTime().format(TIME_FORMATTER);
-                        String description =transaction.getDescription();
-                        String vendor = transaction.getVendor();
-                        String amount = transaction.getVendor();
+                    String date = transaction.getDate().format(DATE_FORMATTER);
+                    String time = transaction.getTime().format(TIME_FORMATTER);
+                    String description = transaction.getDescription();
+                    String amount = String.format("%.2f", transaction.getAmount());
 
-                        fixed = true;
-                    }
+
+                    System.out.println("%s|%s|%s|%s|%s\n", date, time, description, vendor, amount);
+                    fixed = true;
 
 
                 }
 
             }
         }
+}
 
