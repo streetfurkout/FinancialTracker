@@ -455,11 +455,13 @@ public class FinancialTracker {
                     if (!fixed){
                         System.err.println("No transactions found for vendor: " +vendor);
                     }
-
-
                 }
-
             }
+        }
+        private static void MonthToDateReport() {
+        LocalDate today = LocalDate.now();
+        LocalDate startingDayOfTheMonth = today.withDayOfMonth(1);
+        filterTransactionsByDate(startingDayOfTheMonth, today);
         }
 }
 
