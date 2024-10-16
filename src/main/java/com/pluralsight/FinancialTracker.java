@@ -1,16 +1,16 @@
 package com.pluralsight;
 
-import javax.swing.border.EtchedBorder;
 import java.io.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.Scanner;
 
 public class FinancialTracker {
 
-    private static ArrayList<Transaction> transactions = new ArrayList<Transaction>();
+    private static final ArrayList<Transaction> transactions = new ArrayList<Transaction>();
     private static final String FILE_NAME = "transactions.csv";
     private static final String DATE_FORMAT = "yyyy-MM-dd";
     private static final String TIME_FORMAT = "HH:mm:ss";
@@ -79,7 +79,7 @@ public class FinancialTracker {
         try {
 
 
-            BufferedReader br = new BufferedReader(new FileReader("transactions.csv"));
+            BufferedReader br = new BufferedReader(new FileReader(FILE_NAME));
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split("\\|");
 
@@ -279,14 +279,14 @@ public class FinancialTracker {
         System.out.println("Date, Time, Description, Vendor, Amount");
 
         for (Transaction transaction : transactions) {
-            String date = transaction.getDate().format(DATE_FORMATTER).trim();
-            String time = transaction.getTime().format(TIME_FORMATTER).trim();
-            String description = transaction.getDescription().trim();
-            String vendor = transaction.getVendor().trim();
-            String amount = String.format("%.2f", transaction.getAmount());
+            //String date = transaction.getDate().format(DATE_FORMATTER).trim();
+            //String time = transaction.getTime().format(TIME_FORMATTER).trim();
+            //String description = transaction.getDescription().trim();
+            //String vendor = transaction.getVendor().trim();
+            //String amount = String.format("%.2f", transaction.getAmount());
 
-            System.out.printf("%s|%s|%s|%s|%s|\\|n", date, time, description, vendor, amount);
-
+            //System.out.printf("%s|%s|%s|%s|%s \n", date, time, description, vendor, amount);
+            System.out.println(transaction.toString());
 
         }
     }
@@ -298,16 +298,21 @@ public class FinancialTracker {
         System.out.println("Date | Time | Description | Vendor | Amount");
 
         for (Transaction transaction : transactions) {
+            double amount1 = Math.max(0, transaction.getAmount());
+
+            // Skip the transaction if the amount is less than or equal to zero
+            if (amount1 <= 0) {
+                continue; // Skip this iteration
+            }
+
             String date = transaction.getDate().format(DATE_FORMATTER).trim();
             String time = transaction.getTime().format(TIME_FORMATTER).trim();
             String description = transaction.getDescription().trim();
             String vendor = transaction.getVendor().trim();
-            String amount = String.format("%.2f", transaction.getAmount());
+            String amount = String.format("%.2f", amount1);
 
-            System.out.printf("%s|%s|%s|%s|%s|\n", date, time, description, vendor, amount);
+            System.out.printf("%s | %s | %s | %s | %s |\n", date, time, description, vendor, amount);
         }
-
-
     }
 
     private static void displayPayments() {
@@ -318,6 +323,11 @@ public class FinancialTracker {
 
 
         for (Transaction transaction : transactions) {
+            double amount2 = Math.min(0, transaction.getAmount());
+
+            if (amount2>= 0) {
+                continue;
+            }
 
             String date = transaction.getDate().format(DATE_FORMATTER);
             String time = transaction.getTime().format(TIME_FORMATTER);
