@@ -1,9 +1,7 @@
 package com.pluralsight;
 
 import javax.swing.border.EtchedBorder;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
+import java.io.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -98,7 +96,7 @@ public class FinancialTracker {
 
             }
         } catch (Exception e) {
-            System.out.println("Please be careful there is a mashed potato");
+            System.err.println("Please be careful there is a mashed potato");
         }
     }
 
@@ -119,7 +117,7 @@ public class FinancialTracker {
                 LocalDate.parse(dateOfDeposit, DATE_FORMATTER);
                 break; //exit loop if input is valid
             } catch (Exception e) {
-                System.out.println("Invalid date format. Please try again.");
+                System.err.println("Invalid date format. Please try again.");
             }
         }
 
@@ -155,11 +153,17 @@ public class FinancialTracker {
                 } else {
                     System.out.println("Amount must be positive.");
                 }
-            } catch (NumberFormatException e) {
+            } catch (Exception e) {
                 System.out.println("Invalid input. Please enter a value bigger than zero.");
             }
         }
-
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter("transactions.csv", true))) {
+            String line = String.format("%s|%s|%s|%s|%s|\n", dateOfDeposit, timeOfDeposit, description, vendor, amount);
+            bw.write(line);
+            System.out.println("Don`t worry, all potatoes are in the safe place.");
+        } catch (Exception e) {
+            System.out.println("Please be careful! Brandon will eat your potatoes.");
+        }
 
     }
 
@@ -218,13 +222,21 @@ public class FinancialTracker {
                     } else {
                         System.out.println("Amount must be positive.");
                     }
-                } catch (NumberFormatException e) {
+                } catch (Exception e) {
                     System.out.println("Invalid input. Please enter a value bigger than zero.");
                 }
             }
-
+            try (BufferedWriter bwr = new BufferedWriter(new FileWriter("transactions.csv", true))) {
+                String line = String.format("%s|%s|%s|%s|%s|\n", timeOfPayment, timeOfPayment, description, vendor, amount);
+                bwr.write(line);
+                System.out.println("Don`t worry, all potatoes are in the safe place.");
+            } catch (Exception e) {
+                System.out.println("Please be careful! The transactions not added.");
+            }
         }
     }
+
+
 
     private static void ledgerMenu(Scanner scanner) {
         boolean running = true;
@@ -431,10 +443,10 @@ public class FinancialTracker {
 
                         fixed = true;
                     }
-                    System.out.println("%s|%s|%s|%s|%s\n" , date, time, description, vendor, amount);
+
 
                 }
 
             }
         }
-    }
+
