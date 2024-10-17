@@ -79,28 +79,27 @@ public class FinancialTracker {
             }
             return;
         }
-        String line;
+
         try {
-
-
             BufferedReader br = new BufferedReader(new FileReader(FILE_NAME));
+            String line;
             while ((line = br.readLine()) != null) {
                 String[] parts = line.split("\\|");
 
+
+                LocalDate date = LocalDate.parse(String.format(parts[0].trim(), DATE_FORMATTER));
+                LocalTime time = LocalTime.parse(String.format(parts[1].trim(),TIME_FORMATTER));
+                String description = parts[2];
+                String vendor = parts[3];
                 double amount = Double.parseDouble(parts[4]);
 
 
-                String vendor = parts[3];
-                String description = parts[2];
-                LocalDate date = LocalDate.parse(parts[0], DATE_FORMATTER);
-                LocalTime time = LocalTime.parse(parts[1], TIME_FORMATTER);
                 Transaction transaction = new Transaction(date, time, description, vendor, amount);
                 transactions.add(transaction);
-
-
             }
         } catch (Exception e) {
             System.err.println("Please be careful there is a mashed potato");
+            e.printStackTrace();
         }
     }
 
@@ -236,7 +235,7 @@ public class FinancialTracker {
                 }
             }
             try (BufferedWriter bwr = new BufferedWriter(new FileWriter("transactions.csv", true))) {
-                String line = String.format("%s|%s|%s|%s|%s|\n", timeOfPayment, timeOfPayment, description, vendor, amount);
+                String line = String.format("%s|%s|%s|%s|%s\n", timeOfPayment, timeOfPayment, description, vendor, amount);
                 bwr.write(line);
                 System.out.println("Don`t worry, all potatoes are in the safe place.");
             } catch (Exception e) {
@@ -275,6 +274,7 @@ public class FinancialTracker {
                     break;
                 case "H":
                     running = false;
+                    break;
                 default:
                     System.out.println("Invalid option");
                     break;
@@ -465,6 +465,10 @@ public class FinancialTracker {
     }
     private static void filterTransactionsByVendor(String vendor) {
         /**
+         * // This method filters the transactions by vendor and prints a report to the console.
+         *         // It takes one parameter: vendor, which represents the name of the vendor to filter by.
+         *         // The method loops through the transactions list and checks each transaction's vendor name against the specified vendor name.
+         *         // Transactions with a matching vendor name are printed to the console.
          * This method filters the transactions by vendor and prints a report to the console.
          * It takes one parameter: vendor, which represents the name of the vendor to filter by.
          * The method loops through the transactions list and checks each transaction's vendor name against the specified vendor name.
@@ -499,29 +503,29 @@ public class FinancialTracker {
         }
     }
 
-        private static void monthToDateReport() {
+    private static void monthToDateReport() {
         LocalDate today = LocalDate.now();
         LocalDate startingDayOfTheMonth = today.withDayOfMonth(1);
 
         filterTransactionsByDate(startingDayOfTheMonth, today);
-        }
+    }
 
-        private static void previousMonthReport() {
+    private static void previousMonthReport() {
         LocalDate today = LocalDate.now();
         LocalDate startingDayOfTheCurrentMonth = today.withDayOfMonth(1);
         LocalDate theLastDayOfThePreviousMonth = startingDayOfTheCurrentMonth.minusDays(1);
         LocalDate theFirstDayOfPreviousMonth = theLastDayOfThePreviousMonth.withDayOfMonth(1);
 
         filterTransactionsByDate(startingDayOfTheCurrentMonth, theLastDayOfThePreviousMonth);
-        }
-        private static void yearToDateReport(){
+    }
+    private static void yearToDateReport(){
         LocalDate today = LocalDate.now();
         LocalDate startingDateOfTheYear = today.withDayOfYear(1);
 
         filterTransactionsByDate(startingDateOfTheYear, today);
-        }
+    }
 
-        private static void previousYearReport() {
+    private static void previousYearReport() {
         LocalDate today = LocalDate.now();
         LocalDate startingDayOfTheCurrentYear = today.withDayOfYear(1);
         LocalDate theLastDayOfThePreviousYear = startingDayOfTheCurrentYear.minusDays(1);
@@ -531,5 +535,3 @@ public class FinancialTracker {
     }
 
 }
-
-

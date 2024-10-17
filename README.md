@@ -40,7 +40,7 @@ Follow these steps to get your application running within IntelliJ IDEA:
 
 Include screenshots or GIFs that show your application in action. Use tools like [Giphy Capture](https://giphy.com/apps/giphycapture) to record a GIF of your application.
 
-![Application Screenshot](path/to/your/screenshot.png)
+![Application Screenshot](![Untitled.png](imgs%2FUntitled.png))
 
 ## Future Work
 We can create virtual graphics with using customer`s data.
@@ -60,3 +60,4 @@ We can add balance section and integrate it to the account;
 
 - Thank you to [Raymond Maroun] for continuous support and guidance.
 - A special thanks to Emre AKARSU and Ekaterina Koshkina for their dedication and teamwork.
+- Another special thanks to Enes YILMAZ a&& Talha Bilmen for helping me about presentation section of my project. 
