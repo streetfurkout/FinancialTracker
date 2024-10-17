@@ -15,8 +15,7 @@ They can display their monthly, yearly or date based transactions too.
 - so that the application can process it easily.
 
 ## Setup
-No additional set up needed.
-
+Instructions on how to set up and run the project using IntelliJ IDEA
 ### Prerequisites
 
 - IntelliJ IDEA: Ensure you have IntelliJ IDEA installed, which you can download from [here](https://www.jetbrains.com/idea/download/).
@@ -39,9 +38,8 @@ Follow these steps to get your application running within IntelliJ IDEA:
 ## Demo
 
 Include screenshots or GIFs that show your application in action. Use tools like [Giphy Capture](https://giphy.com/apps/giphycapture) to record a GIF of your application.
-
-![Application Screenshot](![Untitled.png](imgs%2FUntitled.png))
-
+![homescreen.png](imgs%2Fhomescreen.png)
+![add-deposit.png](imgs%2Fadd-deposit.png)
 ## Future Work
 We can create virtual graphics with using customer`s data.
 We can add balance section and integrate it to the account;
