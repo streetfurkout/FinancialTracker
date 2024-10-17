@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.Scanner;
 
+
 public class FinancialTracker {
 
     private static final ArrayList<Transaction> transactions = new ArrayList<Transaction>();
@@ -436,38 +437,39 @@ public class FinancialTracker {
         }
 
     }
+    private static void filterTransactionsByVendor(String vendor) {
+        // This method filters the transactions by vendor and prints a report to the console.
+        // It takes one parameter: vendor, which represents the name of the vendor to filter by.
+        // The method loops through the transactions list and checks each transaction's vendor name against the specified vendor name.
+        // Transactions with a matching vendor name are printed to the console.
+        // If no transactions match the specified vendor name, the method prints a message indicating that there are no results.
 
+        if (transactions.isEmpty()) {
+            System.out.println("Unfortunately, there are no transactions for this account.");
+            return;
+        }
 
-        private static void filterTransactionsByVendor (String vendor) {
-            // This method filters the transactions by vendor and prints a report to the console.
-            // It takes one parameter: vendor, which represents the name of the vendor to filter by.
-            // The method loops through the transactions list and checks each transaction's vendor name against the specified vendor name.
-            // Transactions with a matching vendor name are printed to the console.
-            // If no transactions match the specified vendor name, the method prints a message indicating that there are no results.
+        System.out.println("Transactions filtered by vendor: " + vendor);
 
-            if (transactions.isEmpty()) {
-                System.out.println("Unfortunately, there is no transaction for this account.");
-                return;
+        boolean found = false; // Renamed for clarity
+
+        for (Transaction transaction : transactions) {
+            if (transaction.getVendor().equalsIgnoreCase(vendor)) {
+                String date = transaction.getDate().format(DATE_FORMATTER);
+                String time = transaction.getTime().format(TIME_FORMATTER);
+                String description = transaction.getDescription();
+                String amount = String.format("%.2f", transaction.getAmount());
+
+                System.out.printf("%s | %s | %s | %s | %s\n", date, time, description, vendor, amount);
+                found = true; // Indicate that at least one transaction was found
             }
-            System.out.println("Transaction filtered by vendor: " + vendor);
+        }
 
-            boolean fixed = false;
-
-            for (Transaction transaction : transactions) {
-
-                if (transaction.getVendor().equalsIgnoreCase(vendor)) {
-
-                    String date = transaction.getDate().format(DATE_FORMATTER);
-                    String time = transaction.getTime().format(TIME_FORMATTER);
-                    String description = transaction.getDescription();
-                    String amount = String.format("%.2f", transaction.getAmount());
-
-
-                    System.out.printf("%s | %s | %s | %s | %s\n", date, time, description, vendor, amount);
-                    fixed = true;
-                    }
-                }
-            }
+        // If no transactions were found, print a message
+        if (!found) {
+            System.out.println("No transactions found for vendor: " + vendor);
+        }
+    }
 
         private static void monthToDateReport() {
         LocalDate today = LocalDate.now();
