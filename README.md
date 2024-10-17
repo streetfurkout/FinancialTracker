@@ -3,13 +3,16 @@ FinancialTracker
 
 ## Description of the Project
 
-I created this application to can help people about their transactions. If they would use this app, they can follow their payments and deposits easily. They can display their monthly, yearly or date based transactions too.
+I created this application to can help people about their transactions.
+They can follow their payments and deposits easily.
+They can display their monthly, yearly or date based transactions too.
 ![Class Diagram](path/to/your/class_diagram.png)
 
 ## User Stories
 
-
-- As a user, I want to be able to follow my all transactions (should include monthly, yearly or whenever I want) so that the application can process it easily.
+- As a user, I want to enter my financial data.
+- As a user, I want to be able to follow my all transactions (should include monthly, yearly)
+- so that the application can process it easily.
 
 ## Setup
 No additional set up needed.
@@ -40,11 +43,11 @@ Include screenshots or GIFs that show your application in action. Use tools like
 ![Application Screenshot](path/to/your/screenshot.png)
 
 ## Future Work
-
+We can create virtual graphics with using customer`s data.
+We can add balance section and integrate it to the account;
+-by the way users can not make payment if their balance is not enough.
 
 ## Resources
-
-List resources such as tutorials, articles, or documentation that helped you during the project.
 
 - [Java Programming Tutorial](https://www.w3schools.com/java/default.asp)
 - [BrightSpaceWorkBooks] (https://yearup.brightspace.com/d2l/home/8605)
@@ -54,8 +57,6 @@ List resources such as tutorials, articles, or documentation that helped you dur
 - **Furkan KENDIRCIOGLU** - Creator of the project.
 
 ## Thanks
-
-Express gratitude towards those who provided help, guidance, or resources:
 
 - Thank you to [Raymond Maroun] for continuous support and guidance.
 - A special thanks to Emre AKARSU and Ekaterina Koshkina for their dedication and teamwork.

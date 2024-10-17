@@ -71,7 +71,7 @@ public class FinancialTracker {
                 }
 
             } catch (Exception e) {
-                System.out.println("You need to add a file");
+                System.err.println("You need to add a file");
             }
             return;
         }
@@ -130,7 +130,7 @@ public class FinancialTracker {
                 LocalTime.parse(timeOfDeposit, TIME_FORMATTER);
                 break;
             } catch (Exception e) {
-                System.out.println("Invalid time format. Please try again");
+                System.err.println("Invalid time format. Please try again");
 
             }
         }
@@ -154,7 +154,7 @@ public class FinancialTracker {
                     System.out.println("Amount must be positive.");
                 }
             } catch (Exception e) {
-                System.out.println("Invalid input. Please enter a value bigger than zero.");
+                System.err.println("Invalid input. Please enter a value bigger than zero.");
             }
         }
         try (BufferedWriter bw = new BufferedWriter(new FileWriter("transactions.csv", true))) {
@@ -162,7 +162,7 @@ public class FinancialTracker {
             bw.write(line);
             System.out.println("Don`t worry, all potatoes are in the safe place.");
         } catch (Exception e) {
-            System.out.println("Please be careful! Brandon will eat your potatoes.");
+            System.err.println("Please be careful! Brandon will eat your potatoes.");
         }
 
     }
@@ -183,7 +183,7 @@ public class FinancialTracker {
                 LocalDate.parse(dateOfPayment, DATE_FORMATTER);
                 break;
             } catch (Exception e) {
-                System.out.println("Invalid date format. Please try again.");
+                System.err.println("Invalid date format. Please try again.");
             }
 
             String timeOfPayment;
@@ -194,7 +194,7 @@ public class FinancialTracker {
                     LocalTime.parse(timeOfPayment, TIME_FORMATTER);
                     break;
                 } catch (Exception e) {
-                    System.out.println("Invalid time format. Please try again");
+                    System.err.println("Invalid time format. Please try again");
 
                 }
             }
@@ -223,7 +223,7 @@ public class FinancialTracker {
                         System.out.println("Amount must be positive.");
                     }
                 } catch (Exception e) {
-                    System.out.println("Invalid input. Please enter a value bigger than zero.");
+                    System.err.println("Invalid input. Please enter a value bigger than zero.");
                 }
             }
             try (BufferedWriter bwr = new BufferedWriter(new FileWriter("transactions.csv", true))) {
@@ -231,7 +231,7 @@ public class FinancialTracker {
                 bwr.write(line);
                 System.out.println("Don`t worry, all potatoes are in the safe place.");
             } catch (Exception e) {
-                System.out.println("Please be careful! The transactions not added.");
+                System.err.println("Please be careful! The transactions not added.");
             }
         }
     }
@@ -391,6 +391,7 @@ public class FinancialTracker {
                     break;
             }
         }
+
     }
 
 
@@ -464,13 +465,10 @@ public class FinancialTracker {
 
                     System.out.printf("%s | %s | %s | %s | %s\n", date, time, description, vendor, amount);
                     fixed = true;
-
-                    if (!fixed){
-                        System.err.println("No transactions found for vendor: " +vendor);
                     }
                 }
             }
-        }
+
         private static void monthToDateReport() {
         LocalDate today = LocalDate.now();
         LocalDate startingDayOfTheMonth = today.withDayOfMonth(1);
@@ -495,12 +493,13 @@ public class FinancialTracker {
 
         private static void previousYearReport() {
         LocalDate today = LocalDate.now();
-        LocalDate startingDayOfTheCureentYear = today.withDayOfYear(1);
-        LocalDate theLastDayOfThePreviousYear = startingDayOfTheCureentYear.minusDays(1);
+        LocalDate startingDayOfTheCurrentYear = today.withDayOfYear(1);
+        LocalDate theLastDayOfThePreviousYear = startingDayOfTheCurrentYear.minusDays(1);
         LocalDate theFirstDayOfThePreviousYear = theLastDayOfThePreviousYear.withDayOfYear(1);
 
         filterTransactionsByDate(theFirstDayOfThePreviousYear, theLastDayOfThePreviousYear);
     }
 
 }
+
 
