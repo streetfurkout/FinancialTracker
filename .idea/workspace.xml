@@ -64,7 +64,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/pluralsight/FinancialTracker.java</url>
-          <line>288</line>
+          <line>298</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
