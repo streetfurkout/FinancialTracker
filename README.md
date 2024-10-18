@@ -53,6 +53,19 @@ Follow these steps to get your application running within IntelliJ IDEA:
 Include screenshots or GIFs that show your application in action. Use tools like [Giphy Capture](https://giphy.com/apps/giphycapture) to record a GIF of your application.
 ![homescreen.png](imgs%2Fhomescreen.png)
 ![add-deposit.png](imgs%2Fadd-deposit.png)
+![add-payment.png](imgs%2Fadd-payment.png)
+![ledgerMenu.png](imgs%2FledgerMenu.png)
+![ledgerMenu.png](imgs%2FledgerMenu.png)
+![add-deposit.png](imgs%2Fadd-deposit.png)
+![displayPayments.png](imgs%2FdisplayPayments.png)
+![reports.png](imgs%2Freports.png)
+![monthToDateReport.png](imgs%2FmonthToDateReport.png)
+![previousMonthReport.png](imgs%2FpreviousMonthReport.png)
+![yearToDate.png](imgs%2FyearToDate.png)
+![previousYearReport.png](imgs%2FpreviousYearReport.png)
+![filteredByVendor.png](imgs%2FfilteredByVendor.png)
+![backMenuOption.png](imgs%2FbackMenuOption.png)
+![backMenuOption.png](imgs%2FbackMenuOption.png)
 ## Future Work
 We can create virtual graphics with using customer`s data.
 We can add balance section and integrate it to the account;

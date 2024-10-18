@@ -438,9 +438,10 @@ public class FinancialTracker {
         LocalDate today = LocalDate.now();
         LocalDate startingDayOfTheCurrentMonth = today.withDayOfMonth(1);
         LocalDate theLastDayOfThePreviousMonth = startingDayOfTheCurrentMonth.minusDays(1);
-        LocalDate theFirstDayOfPreviousMonth = theLastDayOfThePreviousMonth.withDayOfMonth(1);
+        LocalDate theFirstDayOfPreviousMonth = startingDayOfTheCurrentMonth.minusMonths(1).withDayOfMonth(1);
 
-        filterTransactionsByDate(startingDayOfTheCurrentMonth, theLastDayOfThePreviousMonth);
+        // Filter transactions for the entire previous month
+        filterTransactionsByDate(theFirstDayOfPreviousMonth, theLastDayOfThePreviousMonth);
     }
     private static void yearToDateReport(){
         LocalDate today = LocalDate.now();
