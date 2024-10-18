@@ -84,4 +84,4 @@ We can add balance section and integrate it to the account;
 
 - Thank you to [Raymond Maroun] for continuous support and guidance.
 - A special thanks to Emre AKARSU and Ekaterina Koshkina for their dedication and teamwork.
-- Another special thanks to Enes YILMAZ a&& Talha Bilmen for helping me about presentation section of my project. 
+- Another special thanks to Enes YILMAZ && Talha Bilmen for helping me about presentation section of my project. 
