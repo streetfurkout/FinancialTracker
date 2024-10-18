@@ -1,6 +1,7 @@
 package com.pluralsight;
 
 import java.io.*;
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -146,7 +147,7 @@ public class FinancialTracker {
             }
         }
         try (BufferedWriter bw = new BufferedWriter(new FileWriter("transactions.csv", true))) {
-            String line = String.format("%s|%s|%s|%s|%s|\n", dateOfDeposit, timeOfDeposit, description, vendor, amount);
+            String line = String.format("%s|%s|%s|%s|%s\n", dateOfDeposit, timeOfDeposit, description, vendor, amount);
             bw.write(line);
             System.out.println("Don`t worry, all potatoes are in the safe place.");
         } catch (Exception e) {
@@ -169,6 +170,7 @@ public class FinancialTracker {
             } catch (Exception e) {
                 System.err.println("Invalid date format. Please try again.");
             }
+        }
 
             String timeOfPayment;
             while (true) {
@@ -182,19 +184,11 @@ public class FinancialTracker {
 
                 }
             }
+            System.out.println("Please enter a description: ");
+            String description = scanner.nextLine().trim();
 
-
-            System.out.print("Enter the time as HH:mm:ss: ");
-            dateOfPayment = scanner.nextLine();
-
-
-            System.out.print("Enter a description: ");
-            String description = scanner.nextLine();
-
-
-            System.out.print("Enter the vendor: ");
-            String vendor = scanner.nextLine();
-
+            System.out.println("Please enter a vendor");
+            String vendor = scanner.nextLine().trim();
 
             double amount = 0;
             while (true) {
@@ -206,19 +200,19 @@ public class FinancialTracker {
                     } else {
                         System.out.println("Amount must be positive.");
                     }
-                } catch (Exception e) {
+                } catch (NumberFormatException e) {
                     System.err.println("Invalid input. Please enter a value bigger than zero.");
                 }
             }
             try (BufferedWriter bwr = new BufferedWriter(new FileWriter("transactions.csv", true))) {
-                String line = String.format("%s|%s|%s|%s|%s\n", timeOfPayment, timeOfPayment, description, vendor, amount);
+                String line = String.format("%s|%s|%s|%s|-%s\n", timeOfPayment, timeOfPayment, description, vendor, amount);
                 bwr.write(line);
                 System.out.println("Don`t worry, all potatoes are in the safe place.");
             } catch (Exception e) {
                 System.err.println("Please be careful! The transactions not added.");
             }
         }
-    }
+
 
 
 
@@ -290,7 +284,7 @@ public class FinancialTracker {
             String vendor = transaction.getVendor().trim();
             String amount = String.format("%.2f", amount1);
 
-            System.out.printf("%s | %s | %s | %s | %s |\n", date, time, description, vendor, amount);
+            System.out.printf("%s | %s | %s | %s | %s\n", date, time, description, vendor, amount);
         }
     }
 
@@ -313,7 +307,7 @@ public class FinancialTracker {
             String vendor = transaction.getVendor();
             String amount = String.format("%.2f", transaction.getAmount());
 
-            System.out.printf("%s|%s|%s|%s|%s|\n", date, time, description, vendor, amount);
+            System.out.printf("%s|%s|%s|%s|%s\n", date, time, description, vendor, amount);
 
         }
     }
@@ -396,7 +390,7 @@ public class FinancialTracker {
                 found = true;
 
 
-                System.out.printf("%s|%s|%s|%s|%s|\n", date, time, description, vendor, amount);
+                System.out.printf("%s|%s|%s|%s|%s\n", date, time, description, vendor, amount);
 
             }
         }

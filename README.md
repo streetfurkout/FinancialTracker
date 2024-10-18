@@ -9,10 +9,23 @@ They can display their monthly, yearly or date based transactions too.
 ![Class Diagram](path/to/your/class_diagram.png)
 
 ## User Stories
+- As a user I want to have a user friendly "the store home screen", so that I can easily select between options.
+- As a user, I want to add deposit to my account so that I want to display "Add deposit" section by the way I can add deposit to my account.
+- As a user, I want to make my payments into my account so that I want to display a section about it and then I can add my payments with using this.
+- As a user, I want to display a "Ledger menu". so that I can display a new screen for past transactions and reports.
+- As a user, if I want to cancel the process I want to display a button so that I want to display exit button and when I push it app have to stop.
+- As a user, I want to display my all transactions, so that I want to display a section in order to see my all transactions.
+- As a user, I want to display my all deposits into the account, so that I want to display a deposits button.
+- As a user, I want to display my all payments into the account, so that I want to display a payments button.
+- As a user, I want to access reports which I want to see about old transactions so that I want to display a Reports Menu.
+- As a user, I want to display my monthly reports, so that I can check my monthly transactions inside of the report menu.
+- As a user, I want to display previous months reports, so that I can check the previous months transactions inside of the report menu.
+- As a user, I want to display my yearly reports, so that I can check my yearly transactions inside of the report menu.
+- As a user, I want to display my previous years report, so that I can check my previous years transactions inside of the report menu.
+- As a user, I want to search my old transactions by vendor, so that I want to display a section named by transactions by vendor.
+- As a user, I want to find an option for going back to the previous menu, so that I can go back to the report page.
 
-- As a user, I want to enter my financial data.
-- As a user, I want to be able to follow my all transactions (should include monthly, yearly)
-- so that the application can process it easily.
+
 
 ## Setup
 Instructions on how to set up and run the project using IntelliJ IDEA
